@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marta & Pietro | 25.06.2027</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    font-family: Georgia, "Times New Roman", serif; color: #30352f;
+    background: #f7f6f1;
+  }
+  .card {
+    width: min(92%, 520px); padding: 46px 28px 40px; text-align: center;
+    background: rgba(255,255,255,.72); border: 1px solid #d9ddd4;
+    border-radius: 18px; box-shadow: 0 10px 35px rgba(0,0,0,.06);
+  }
+  .names { font-size: clamp(38px, 10vw, 58px); font-weight: 400; margin: 0 0 8px; }
+  .date { letter-spacing: .22em; font-size: 16px; margin-bottom: 34px; }
+  .mountain { font-size: 38px; margin-bottom: 20px; opacity: .72; }
+  h1 { font-size: 24px; font-weight: 400; margin: 0 0 12px; }
+  p { font-size: 16px; line-height: 1.6; margin: 0 auto 28px; max-width: 390px; }
+  button {
+    border: 0; border-radius: 999px; padding: 15px 28px; font-size: 16px;
+    font-family: inherit; cursor: pointer; background: #30352f; color: white;
+  }
+  button:disabled { opacity: .55; cursor: wait; }
+  #status { margin-top: 20px; font-size: 14px; min-height: 22px; }
+  .ok { color: #4d704d; } .err { color: #9a3f3f; }
+  .small { margin-top: 25px; font-size: 12px; opacity: .6; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="mountain">⌁⌁⌁</div>
+    <div class="names">Marta &amp; Pietro</div>
+    <div class="date">25 · 06 · 2027</div>
+    <h1>Condividi con noi i tuoi momenti ❤️</h1>
+    <p>Hai scattato delle foto durante il nostro giorno speciale?<br>
+    Caricale qui: entreranno nel nostro album del matrimonio.</p>
+    <button id="uploadBtn">📷 CARICA LE FOTO</button>
+    <div id="status"></div>
+    <div class="small">Grazie per aver condiviso questo giorno con noi.</div>
+  </main>
+
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script>
+const CLOUD_NAME = "sddyugpi";
+const UPLOAD_PRESET = "MATRIMONIO MARTA e PIETRO";
+
+const btn = document.getElementById("uploadBtn");
+const status = document.getElementById("status");
+
+const widget = cloudinary.createUploadWidget({
+  cloudName: CLOUD_NAME,
+  uploadPreset: UPLOAD_PRESET,
+  folder: "Matrimonio_Marta_Pietro_25-06-2027",
+  multiple: true,
+  maxFiles: 50,
+  clientAllowedFormats: ["jpg","jpeg","png","webp","heic"],
+  maxFileSize: 15000000,
+  sources: ["local","camera"],
+  showCompletedButton: true,
+  language: "it"
+}, (error, result) => {
+  if (error) {
+    status.className = "err";
+    status.textContent = "Si è verificato un errore. Riprova.";
+    return;
+  }
+  if (result && result.event === "success") {
+    status.className = "ok";
+    status.textContent = "✓ Foto caricata! Puoi aggiungerne altre.";
+  }
+  if (result && result.event === "close") {
+    status.className = "";
+  }
+});
+
+btn.addEventListener("click", () => {
+  status.textContent = "";
+  widget.open();
+});
+</script>
+</body>
+</html>
