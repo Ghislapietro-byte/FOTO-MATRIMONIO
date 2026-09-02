@@ -1,121 +1,603 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>Marta &amp; Pietro | 25.06.2027</title>
+
+
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    font-family: Georgia, "Times New Roman", serif; color: #30352f;
-    background: #f7f6f1;
-  }
-  .card {
-    width: min(92%, 520px); padding: 46px 28px 40px; text-align: center;
-    background: rgba(255,255,255,.72); border: 1px solid #d9ddd4;
-    border-radius: 18px; box-shadow: 0 10px 35px rgba(0,0,0,.06);
-  }
-  .names { font-size: clamp(38px, 10vw, 58px); font-weight: 400; margin: 0 0 8px; }
-  .date { letter-spacing: .22em; font-size: 16px; margin-bottom: 34px; }
-  .mountain { font-size: 38px; margin-bottom: 20px; opacity: .72; }
-  h1 { font-size: 24px; font-weight: 400; margin: 0 0 12px; }
-  p { font-size: 16px; line-height: 1.6; margin: 0 auto 28px; max-width: 390px; }
-  button {
-    border: 0; border-radius: 999px; padding: 15px 28px; font-size: 16px;
-    font-family: inherit; cursor: pointer; background: #30352f; color: white;
-  }
-  button:disabled { opacity: .55; cursor: wait; }
-  #status { margin-top: 20px; font-size: 14px; min-height: 22px; }
-  .ok { color: #4d704d; } .err { color: #9a3f3f; }
-  .small { margin-top: 25px; font-size: 12px; opacity: .6; }
-</style>
-</head>
-<body>
-  <main class="card">
-    <div class="mountain">⌁⌁⌁</div>
-    <div class="names">Marta &amp; Pietro</div>
-    <div class="date">25 · 06 · 2027</div>
-    <h1>Condividi con noi i tuoi momenti ❤️</h1>
-    <p>Hai scattato delle foto durante il nostro giorno speciale?<br>
-    Caricale qui: entreranno nel nostro album del matrimonio.</p>
-    <button id="uploadBtn">📷 CARICA LE FOTO</button>
-    <div id="status"></div>
-    <div class="small">Grazie per aver condiviso questo giorno con noi.</div>
-  </main>
 
-<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-<script>
-const CLOUD_NAME = "sddyugpi";
-const UPLOAD_PRESET = "MATRIMONIO MARTA e PIETRO";
+/* =========================================
+   PAGINA
+   ========================================= */
 
-const btn = document.getElementById("uploadBtn");
-const status = document.getElementById("status");
+html,
+body {
 
-const widget = cloudinary.createUploadWidget({
-  cloudName: CLOUD_NAME,
-  uploadPreset: UPLOAD_PRESET,
-  folder: "Matrimonio_Marta_Pietro_25-06-2027",
-  multiple: true,
-  maxFiles: 50,
-  clientAllowedFormats: ["jpg","jpeg","png","webp","heic"],
-  maxFileSize: 15000000,
-  sources: ["local","camera"],
-  showCompletedButton: true,
-  language: "it",
-  text: {
-    it: {
-      menu: {
-        files: "Scegli foto",
-        camera: "Fotocamera"
-      },
-      local: {
-        browse: "Scegli le foto",
-        dd_title_single: "Trascina qui la foto",
-        dd_title_multi: "Trascina qui le foto",
-        or: "oppure"
-      },
-      queue: {
-        title: "Foto da caricare",
-        title_uploading_with_counter: "Caricamento di {{current}} di {{total}}",
-        done: "Completato",
-        upload_more: "Aggiungi altre foto",
-        retry_upload: "Riprova",
-        cancel_upload: "Annulla",
-        remove: "Rimuovi"
-      },
-      notifications: {
-        general_error: "Si è verificato un errore. Riprova.",
-        upload_failed: "Caricamento non riuscito.",
-        upload_complete: "Foto caricata con successo!"
-      },
-      buttons: {
-        upload: "Carica foto",
-        upload_more: "Aggiungi altre foto",
-        cancel: "Annulla",
-        close: "Chiudi"
-      }
+    margin: 0;
+
+    padding: 0;
+
+    width: 100%;
+
+    min-height: 100%;
+
+    background: #f8f6f0;
+
+}
+
+
+body {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+}
+
+
+/* =========================================
+   CONTENITORE DELL'IMMAGINE
+   ========================================= */
+
+.page {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 900px;
+
+    line-height: 0;
+
+}
+
+
+.page img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+}
+
+
+/* =========================================
+   RIQUADRO INTERAMENTE CLICCABILE
+   ========================================= */
+
+#uploadButton {
+
+    position: absolute;
+
+
+    /*
+       POSIZIONE DEL RIQUADRO
+    */
+
+    left: 11.5%;
+
+    top: 55%;
+
+
+    /*
+       DIMENSIONI DEL RIQUADRO
+    */
+
+    width: 77%;
+
+    height: 25%;
+
+
+    /*
+       IL PULSANTE È INVISIBILE
+    */
+
+    border: none;
+
+    background: transparent;
+
+
+    cursor: pointer;
+
+    padding: 0;
+
+    margin: 0;
+
+
+    z-index: 10;
+
+}
+
+
+/*
+   Piccolo effetto quando si passa
+   sopra il riquadro
+*/
+
+#uploadButton:hover {
+
+    background: rgba(255,255,255,0.04);
+
+}
+
+
+/*
+   Nessun bordo blu quando viene
+   selezionato
+*/
+
+#uploadButton:focus {
+
+    outline: none;
+
+}
+
+
+/* =========================================
+   MESSAGGIO DI CONFERMA
+   ========================================= */
+
+#status {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 20px;
+
+    transform: translateX(-50%);
+
+
+    background: white;
+
+    color: #52604c;
+
+
+    padding: 11px 20px;
+
+    border-radius: 25px;
+
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.15);
+
+
+    display: none;
+
+
+    z-index: 9999;
+
+}
+
+
+/* =========================================
+   TELEFONO
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    #uploadButton {
+
+        left: 11.5%;
+
+        top: 55%;
+
+        width: 77%;
+
+        height: 25%;
+
     }
-  }
-}, (error, result) => {
-  if (error) {
-    status.className = "err";
-    status.textContent = "Si è verificato un errore. Riprova.";
-    return;
-  }
-  if (result && result.event === "success") {
-    status.className = "ok";
-    status.textContent = "✓ Foto caricata! Puoi aggiungerne altre.";
-  }
-  if (result && result.event === "close") {
-    status.className = "";
-  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================
+     PAGINA DEL MATRIMONIO
+     ====================================== -->
+
+<div class="page">
+
+
+    <!--
+
+        IMPORTANTE:
+
+        L'immagine deve chiamarsi:
+
+        matrimonio.png
+
+        e deve essere nello stesso
+        repository di index.html.
+
+    -->
+
+    <img
+
+        src="matrimonio.png"
+
+        alt="Marta e Pietro - Condivisione foto matrimonio"
+
+    >
+
+
+
+    <!-- ==================================
+         RIQUADRO CLICCABILE
+         ================================== -->
+
+    <button
+
+        id="uploadButton"
+
+        aria-label="Carica le tue foto"
+
+        type="button">
+
+    </button>
+
+
+</div>
+
+
+
+<!-- ======================================
+     MESSAGGIO
+     ====================================== -->
+
+<div id="status"></div>
+
+
+
+<!-- ======================================
+     CLOUDINARY
+     ====================================== -->
+
+<script
+
+    src="https://upload-widget.cloudinary.com/global/all.js"
+
+    type="text/javascript">
+
+</script>
+
+
+
+<script>
+
+/* =========================================
+   DATI CLOUDINARY
+   ========================================= */
+
+const CLOUD_NAME =
+    "sddyugpi";
+
+
+const UPLOAD_PRESET =
+    "MATRIMONIO MARTA e PIETRO";
+
+
+/* =========================================
+   MESSAGGIO
+   ========================================= */
+
+const statusBox =
+    document.getElementById("status");
+
+
+
+/* =========================================
+   CREAZIONE WIDGET CLOUDINARY
+   ========================================= */
+
+const widget =
+
+cloudinary.createUploadWidget(
+
+{
+
+    cloudName:
+        CLOUD_NAME,
+
+
+    uploadPreset:
+        UPLOAD_PRESET,
+
+
+    /*
+       Cartella dove verranno salvate
+       le foto
+    */
+
+    folder:
+        "Matrimonio_Marta_Pietro_25-06-2027",
+
+
+    /*
+       Più file contemporaneamente
+    */
+
+    multiple:
+        true,
+
+
+    maxFiles:
+        50,
+
+
+    /*
+       Sorgenti disponibili
+    */
+
+    sources:
+        [
+            "local",
+            "camera"
+        ],
+
+
+    /*
+       Formati accettati
+    */
+
+    clientAllowedFormats:
+        [
+            "jpg",
+            "jpeg",
+            "png",
+            "webp",
+            "heic",
+            "mp4",
+            "mov"
+        ],
+
+
+    /*
+       Dimensione massima
+       15 MB per file
+    */
+
+    maxFileSize:
+        15000000,
+
+
+    showCompletedButton:
+        true,
+
+
+    /*
+       Italiano
+    */
+
+    language:
+        "it",
+
+
+    /*
+       Traduzioni Cloudinary
+    */
+
+    text:
+    {
+
+        it:
+        {
+
+            menu:
+            {
+
+                files:
+                    "Scegli foto e video",
+
+                camera:
+                    "Fotocamera"
+
+            },
+
+
+            local:
+            {
+
+                browse:
+                    "Scegli foto e video",
+
+                dd_title_single:
+                    "Trascina qui il file",
+
+                dd_title_multi:
+                    "Trascina qui i file",
+
+                or:
+                    "oppure"
+
+            },
+
+
+            queue:
+            {
+
+                title:
+                    "File da caricare",
+
+                title_uploading_with_counter:
+                    "Caricamento di {{current}} di {{total}}",
+
+                done:
+                    "Completato",
+
+                upload_more:
+                    "Aggiungi altri file",
+
+                retry_upload:
+                    "Riprova",
+
+                cancel_upload:
+                    "Annulla",
+
+                remove:
+                    "Rimuovi"
+
+            },
+
+
+            buttons:
+            {
+
+                upload:
+                    "Carica foto",
+
+                upload_more:
+                    "Aggiungi altri file",
+
+                cancel:
+                    "Annulla",
+
+                close:
+                    "Chiudi"
+
+            },
+
+
+            notifications:
+            {
+
+                general_error:
+                    "Si è verificato un errore. Riprova.",
+
+                upload_failed:
+                    "Caricamento non riuscito.",
+
+                upload_complete:
+                    "Foto caricata con successo!"
+
+            }
+
+        }
+
+    }
+
+},
+
+
+/* =========================================
+   RISULTATI DEL CARICAMENTO
+   ========================================= */
+
+function(error, result)
+{
+
+    /*
+       Errore
+    */
+
+    if (error)
+    {
+
+        statusBox.innerText =
+            "Si è verificato un errore. Riprova.";
+
+
+        statusBox.style.display =
+            "block";
+
+
+        setTimeout(function()
+        {
+
+            statusBox.style.display =
+                "none";
+
+        }, 3000);
+
+
+        return;
+
+    }
+
+
+    /*
+       Foto caricata
+    */
+
+    if
+    (
+        result &&
+        result.event === "success"
+    )
+    {
+
+        statusBox.innerText =
+            "✓ Foto caricata con successo!";
+
+
+        statusBox.style.display =
+            "block";
+
+
+        setTimeout(function()
+        {
+
+            statusBox.style.display =
+                "none";
+
+        }, 2500);
+
+    }
+
 });
 
-btn.addEventListener("click", () => {
-  status.textContent = "";
-  widget.open();
-});
+
+
+/* =========================================
+   APERTURA CLOUDINARY
+   ========================================= */
+
+document
+
+    .getElementById("uploadButton")
+
+    .addEventListener(
+
+        "click",
+
+        function()
+        {
+
+            /*
+               Apre Cloudinary
+            */
+
+            widget.open();
+
+        }
+
+    );
+
 </script>
+
+
 </body>
+
 </html>
