@@ -62,7 +62,41 @@ const widget = cloudinary.createUploadWidget({
   maxFileSize: 15000000,
   sources: ["local","camera"],
   showCompletedButton: true,
-  language: "it"
+  language: "it",
+  text: {
+    it: {
+      menu: {
+        files: "Scegli foto",
+        camera: "Fotocamera"
+      },
+      local: {
+        browse: "Scegli le foto",
+        dd_title_single: "Trascina qui la foto",
+        dd_title_multi: "Trascina qui le foto",
+        or: "oppure"
+      },
+      queue: {
+        title: "Foto da caricare",
+        title_uploading_with_counter: "Caricamento di {{current}} di {{total}}",
+        done: "Completato",
+        upload_more: "Aggiungi altre foto",
+        retry_upload: "Riprova",
+        cancel_upload: "Annulla",
+        remove: "Rimuovi"
+      },
+      notifications: {
+        general_error: "Si è verificato un errore. Riprova.",
+        upload_failed: "Caricamento non riuscito.",
+        upload_complete: "Foto caricata con successo!"
+      },
+      buttons: {
+        upload: "Carica foto",
+        upload_more: "Aggiungi altre foto",
+        cancel: "Annulla",
+        close: "Chiudi"
+      }
+    }
+  }
 }, (error, result) => {
   if (error) {
     status.className = "err";
