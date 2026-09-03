@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Marta &amp; Pietro | 25.06.2027</title>
+<title>Marta & Pietro | 25.06.2027</title>
 
 
 <style>
@@ -21,31 +21,17 @@ html,
 body {
 
     margin: 0;
-
     padding: 0;
 
     width: 100%;
-
-    min-height: 100%;
 
     background: #f8f6f0;
 
 }
 
 
-body {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: flex-start;
-
-}
-
-
 /* =========================================
-   CONTENITORE DELL'IMMAGINE
+   IMMAGINE INIZIALE
    ========================================= */
 
 .page {
@@ -54,7 +40,8 @@ body {
 
     width: 100%;
 
-    max-width: 900px;
+    margin: 0;
+    padding: 0;
 
     line-height: 0;
 
@@ -73,40 +60,26 @@ body {
 
 
 /* =========================================
-   RIQUADRO INTERAMENTE CLICCABILE
+   RIQUADRO CARICA LE TUE FOTO
+
+   TUTTO IL RIQUADRO È CLICCABILE
    ========================================= */
 
 #uploadButton {
 
     position: absolute;
 
+    left: 10.5%;
 
-    /*
-       POSIZIONE DEL RIQUADRO
-    */
+    top: 52.5%;
 
-    left: 11.5%;
+    width: 79%;
 
-    top: 55%;
-
-
-    /*
-       DIMENSIONI DEL RIQUADRO
-    */
-
-    width: 77%;
-
-    height: 25%;
-
-
-    /*
-       IL PULSANTE È INVISIBILE
-    */
+    height: 31%;
 
     border: none;
 
     background: transparent;
-
 
     cursor: pointer;
 
@@ -114,38 +87,231 @@ body {
 
     margin: 0;
 
-
     z-index: 10;
 
 }
 
 
-/*
-   Piccolo effetto quando si passa
-   sopra il riquadro
-*/
+/* =========================================
+   GALLERIA
+   ========================================= */
 
-#uploadButton:hover {
+.gallery-section {
 
-    background: rgba(255,255,255,0.04);
+    width: 100%;
+
+    padding: 55px 18px 70px;
+
+    background: #f8f6f0;
+
+    text-align: center;
+
+    box-sizing: border-box;
 
 }
 
 
-/*
-   Nessun bordo blu quando viene
-   selezionato
-*/
+.gallery-title {
 
-#uploadButton:focus {
+    margin: 0 0 12px;
 
-    outline: none;
+    color: #30382f;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 30px;
+
+    font-weight: normal;
+
+    letter-spacing: 2px;
+
+    line-height: 1.3;
+
+}
+
+
+.gallery-subtitle {
+
+    margin: 0 auto 35px;
+
+    max-width: 650px;
+
+    color: #454a43;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 16px;
+
+    line-height: 1.7;
 
 }
 
 
 /* =========================================
-   MESSAGGIO DI CONFERMA
+   GRIGLIA FOTO
+   ========================================= */
+
+.gallery {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+}
+
+
+.gallery-item {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    background: #e9e7df;
+
+    aspect-ratio: 1 / 1;
+
+    cursor: pointer;
+
+}
+
+
+.gallery-item img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.3s ease;
+
+}
+
+
+.gallery-item:hover img {
+
+    transform: scale(1.04);
+
+}
+
+
+/* =========================================
+   MESSAGGIO GALLERIA
+   ========================================= */
+
+.gallery-message {
+
+    width: 100%;
+
+    grid-column: 1 / -1;
+
+    padding: 30px 15px;
+
+    color: #666b63;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   FOTO A TUTTO SCHERMO
+   ========================================= */
+
+.lightbox {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 9999;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+        rgba(0,0,0,0.90);
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+}
+
+
+.lightbox.active {
+
+    display: flex;
+
+}
+
+
+.lightbox img {
+
+    max-width: 95%;
+
+    max-height: 90%;
+
+    object-fit: contain;
+
+}
+
+
+.close-lightbox {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 22px;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 40px;
+
+    cursor: pointer;
+
+    line-height: 1;
+
+}
+
+
+/* =========================================
+   MESSAGGIO UPLOAD
    ========================================= */
 
 #status {
@@ -156,51 +322,68 @@ body {
 
     bottom: 20px;
 
-    transform: translateX(-50%);
-
+    transform:
+        translateX(-50%);
 
     background: white;
 
     color: #52604c;
 
-
     padding: 11px 20px;
 
     border-radius: 25px;
-
 
     font-family: Arial, sans-serif;
 
     font-size: 14px;
 
-
     box-shadow:
-        0 4px 15px rgba(0,0,0,0.15);
-
+        0 4px 15px
+        rgba(0,0,0,0.15);
 
     display: none;
 
-
-    z-index: 9999;
+    z-index: 99999;
 
 }
 
 
 /* =========================================
-   TELEFONO
+   SMARTPHONE
    ========================================= */
 
 @media (max-width: 600px) {
 
-    #uploadButton {
+    .gallery-section {
 
-        left: 11.5%;
+        padding:
+            45px 10px 60px;
 
-        top: 55%;
+    }
 
-        width: 77%;
 
-        height: 25%;
+    .gallery-title {
+
+        font-size: 24px;
+
+        letter-spacing: 1.5px;
+
+    }
+
+
+    .gallery-subtitle {
+
+        font-size: 15px;
+
+    }
+
+
+    .gallery {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 8px;
 
     }
 
@@ -215,49 +398,94 @@ body {
 
 
 <!-- ======================================
-     PAGINA DEL MATRIMONIO
+     IMMAGINE INIZIALE
      ====================================== -->
 
 <div class="page">
 
-
-    <!--
-
-        IMPORTANTE:
-
-        L'immagine deve chiamarsi:
-
-        matrimonio.png
-
-        e deve essere nello stesso
-        repository di index.html.
-
-    -->
-
     <img
-
         src="matrimonio.png"
-
-        alt="Marta e Pietro - Condivisione foto matrimonio"
-
+        alt="Marta e Pietro - 25 giugno 2027"
     >
 
 
-
-    <!-- ==================================
-         RIQUADRO CLICCABILE
-         ================================== -->
+    <!--
+       TUTTO IL RIQUADRO DELLA TUA IMMAGINE
+       È CLICCABILE
+    -->
 
     <button
-
         id="uploadButton"
-
-        aria-label="Carica le tue foto"
-
-        type="button">
-
+        type="button"
+        aria-label="Carica le tue foto">
     </button>
 
+</div>
+
+
+
+<!-- ======================================
+     GALLERIA
+     ====================================== -->
+
+<section class="gallery-section">
+
+    <h2 class="gallery-title">
+        LE FOTO DEL NOSTRO GIORNO ❤️
+    </h2>
+
+
+    <p class="gallery-subtitle">
+
+        Scopri i momenti più belli
+        condivisi dai nostri invitati.
+        <br>
+
+        Hai scattato una foto?
+        Condividila anche tu!
+
+    </p>
+
+
+    <div
+        id="gallery"
+        class="gallery">
+
+        <div
+            class="gallery-message"
+            id="galleryMessage">
+
+            Caricamento delle foto...
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================
+     FOTO GRANDE
+     ====================================== -->
+
+<div
+    id="lightbox"
+    class="lightbox">
+
+    <span
+        id="closeLightbox"
+        class="close-lightbox">
+
+        ×
+
+    </span>
+
+
+    <img
+        id="lightboxImage"
+        src=""
+        alt="Foto del matrimonio">
 
 </div>
 
@@ -276,11 +504,8 @@ body {
      ====================================== -->
 
 <script
-
     src="https://upload-widget.cloudinary.com/global/all.js"
-
     type="text/javascript">
-
 </script>
 
 
@@ -299,17 +524,35 @@ const UPLOAD_PRESET =
     "MATRIMONIO MARTA e PIETRO";
 
 
+const GALLERY_TAG =
+    "matrimonio-marta-pietro";
+
+
 /* =========================================
-   MESSAGGIO
+   ELEMENTI
    ========================================= */
 
+const uploadButton =
+    document.getElementById(
+        "uploadButton"
+    );
+
+
 const statusBox =
-    document.getElementById("status");
+    document.getElementById(
+        "status"
+    );
+
+
+const gallery =
+    document.getElementById(
+        "gallery"
+    );
 
 
 
 /* =========================================
-   CREAZIONE WIDGET CLOUDINARY
+   WIDGET CLOUDINARY
    ========================================= */
 
 const widget =
@@ -326,18 +569,19 @@ cloudinary.createUploadWidget(
         UPLOAD_PRESET,
 
 
-    /*
-       Cartella dove verranno salvate
-       le foto
-    */
-
     folder:
         "Matrimonio_Marta_Pietro_25-06-2027",
 
 
     /*
-       Più file contemporaneamente
+       TAG DELLE FOTO
     */
+
+    tags:
+        [
+            GALLERY_TAG
+        ],
+
 
     multiple:
         true,
@@ -347,10 +591,6 @@ cloudinary.createUploadWidget(
         50,
 
 
-    /*
-       Sorgenti disponibili
-    */
-
     sources:
         [
             "local",
@@ -359,7 +599,7 @@ cloudinary.createUploadWidget(
 
 
     /*
-       Formati accettati
+       FORMATI ACCETTATI
     */
 
     clientAllowedFormats:
@@ -375,28 +615,23 @@ cloudinary.createUploadWidget(
 
 
     /*
-       Dimensione massima
-       15 MB per file
+       MASSIMO 50 MB PER FILE
     */
 
     maxFileSize:
-        15000000,
+        50000000,
 
 
     showCompletedButton:
         true,
 
 
-    /*
-       Italiano
-    */
-
     language:
         "it",
 
 
     /*
-       Traduzioni Cloudinary
+       TRADUZIONI
     */
 
     text:
@@ -466,7 +701,7 @@ cloudinary.createUploadWidget(
             {
 
                 upload:
-                    "Carica foto",
+                    "Carica",
 
                 upload_more:
                     "Aggiungi altri file",
@@ -502,44 +737,23 @@ cloudinary.createUploadWidget(
 
 
 /* =========================================
-   RISULTATI DEL CARICAMENTO
+   RISULTATO UPLOAD
    ========================================= */
 
 function(error, result)
 {
 
-    /*
-       Errore
-    */
-
     if (error)
     {
 
-        statusBox.innerText =
-            "Si è verificato un errore. Riprova.";
-
-
-        statusBox.style.display =
-            "block";
-
-
-        setTimeout(function()
-        {
-
-            statusBox.style.display =
-                "none";
-
-        }, 3000);
-
+        mostraMessaggio(
+            "Si è verificato un errore. Riprova."
+        );
 
         return;
 
     }
 
-
-    /*
-       Foto caricata
-    */
 
     if
     (
@@ -548,21 +762,20 @@ function(error, result)
     )
     {
 
-        statusBox.innerText =
-            "✓ Foto caricata con successo!";
+        mostraMessaggio(
+            "✓ Foto caricata con successo!"
+        );
 
 
-        statusBox.style.display =
-            "block";
+        /*
+           Aspetta qualche secondo
+           e aggiorna la galleria.
+        */
 
-
-        setTimeout(function()
-        {
-
-            statusBox.style.display =
-                "none";
-
-        }, 2500);
+        setTimeout(
+            caricaGalleria,
+            3000
+        );
 
     }
 
@@ -571,12 +784,297 @@ function(error, result)
 
 
 /* =========================================
-   APERTURA CLOUDINARY
+   APRI UPLOAD
+   ========================================= */
+
+uploadButton.addEventListener(
+
+    "click",
+
+    function()
+    {
+
+        widget.open();
+
+    }
+
+);
+
+
+
+/* =========================================
+   MESSAGGIO
+   ========================================= */
+
+function mostraMessaggio(
+    testo
+)
+{
+
+    statusBox.innerText =
+        testo;
+
+
+    statusBox.style.display =
+        "block";
+
+
+    setTimeout(
+
+        function()
+        {
+
+            statusBox.style.display =
+                "none";
+
+        },
+
+        3000
+
+    );
+
+}
+
+
+
+/* =========================================
+   CARICA LE FOTO DALLA RESOURCE LIST
+   ========================================= */
+
+function caricaGalleria()
+{
+
+    const url =
+
+        "https://res.cloudinary.com/"
+        +
+        CLOUD_NAME
+        +
+        "/image/list/"
+        +
+        GALLERY_TAG
+        +
+        ".json";
+
+
+    fetch(url)
+
+    .then(
+
+        function(response)
+        {
+
+            if (!response.ok)
+            {
+
+                throw new Error(
+                    "Resource List non disponibile"
+                );
+
+            }
+
+
+            return response.json();
+
+        }
+
+    )
+
+    .then(
+
+        function(data)
+        {
+
+            gallery.innerHTML = "";
+
+
+            /*
+               NESSUNA FOTO
+            */
+
+            if
+            (
+                !data.resources ||
+                data.resources.length === 0
+            )
+            {
+
+                gallery.innerHTML =
+
+                    '<div class="gallery-message">'
+                    +
+                    'Ancora nessuna foto. '
+                    +
+                    'Sii il primo a condividerne una! ❤️'
+                    +
+                    '</div>';
+
+                return;
+
+            }
+
+
+            /*
+               CREA LE FOTO
+            */
+
+            data.resources.forEach(
+
+                function(asset)
+                {
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "gallery-item";
+
+
+                    const image =
+                        document.createElement(
+                            "img"
+                        );
+
+
+                    image.loading =
+                        "lazy";
+
+
+                    image.alt =
+                        "Foto del matrimonio";
+
+
+                    /*
+                       URL OTTIMIZZATO CLOUDINARY
+                    */
+
+                    image.src =
+
+                        "https://res.cloudinary.com/"
+                        +
+                        CLOUD_NAME
+                        +
+                        "/image/upload/"
+                        +
+                        "f_auto,q_auto,w_800,c_fill/"
+                        +
+                        asset.public_id
+                        +
+                        "."
+                        +
+                        asset.format;
+
+
+                    item.appendChild(
+                        image
+                    );
+
+
+                    /*
+                       CLICCANDO SULLA FOTO
+                       SI APRE GRANDE
+                    */
+
+                    item.addEventListener(
+
+                        "click",
+
+                        function()
+                        {
+
+                            apriFoto(
+                                image.src
+                            );
+
+                        }
+
+                    );
+
+
+                    gallery.appendChild(
+                        item
+                    );
+
+                }
+
+            );
+
+        }
+
+    )
+
+    .catch(
+
+        function(error)
+        {
+
+            console.log(
+                "Errore galleria:",
+                error
+            );
+
+
+            gallery.innerHTML =
+
+                '<div class="gallery-message">'
+                +
+                'La galleria non è momentaneamente '
+                +
+                'disponibile. Riprova più tardi. ❤️'
+                +
+                '</div>';
+
+        }
+
+    );
+
+}
+
+
+
+/* =========================================
+   APRI FOTO GRANDE
+   ========================================= */
+
+function apriFoto(url)
+{
+
+    const lightbox =
+        document.getElementById(
+            "lightbox"
+        );
+
+
+    const lightboxImage =
+        document.getElementById(
+            "lightboxImage"
+        );
+
+
+    lightboxImage.src =
+        url;
+
+
+    lightbox.classList.add(
+        "active"
+    );
+
+}
+
+
+
+/* =========================================
+   CHIUDI FOTO
    ========================================= */
 
 document
 
-    .getElementById("uploadButton")
+    .getElementById(
+        "closeLightbox"
+    )
 
     .addEventListener(
 
@@ -585,15 +1083,74 @@ document
         function()
         {
 
-            /*
-               Apre Cloudinary
-            */
-
-            widget.open();
+            document
+                .getElementById(
+                    "lightbox"
+                )
+                .classList.remove(
+                    "active"
+                );
 
         }
 
     );
+
+
+
+/* =========================================
+   CHIUDI CLICCANDO FUORI DALLA FOTO
+   ========================================= */
+
+document
+
+    .getElementById(
+        "lightbox"
+    )
+
+    .addEventListener(
+
+        "click",
+
+        function(event)
+        {
+
+            if
+            (
+                event.target === this
+            )
+            {
+
+                this.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+
+    );
+
+
+
+/* =========================================
+   CARICA LA GALLERIA ALL'APERTURA
+   ========================================= */
+
+caricaGalleria();
+
+
+/*
+   Aggiornamento automatico
+   ogni 60 secondi.
+*/
+
+setInterval(
+
+    caricaGalleria,
+
+    60000
+
+);
 
 </script>
 
