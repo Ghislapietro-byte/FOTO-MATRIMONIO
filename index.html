@@ -1097,61 +1097,27 @@ function caricaGalleria()
 
 function apriFoto(asset)
 {
-
-    /*
-       URL normale della foto
-    */
-
     const imageUrl =
-
         "https://res.cloudinary.com/"
-        +
-        CLOUD_NAME
-        +
-        "/image/upload/"
-        +
-        "f_auto,q_auto/"
-        +
-        asset.public_id
-        +
-        "."
-        +
-        asset.format;
-
-
-    /*
-       URL per il download
-
-       fl_attachment forza il download
-    */
+        + CLOUD_NAME
+        + "/image/upload/f_auto,q_auto/"
+        + asset.public_id
+        + "."
+        + asset.format;
 
     const downloadUrl =
-
         "https://res.cloudinary.com/"
-        +
-        CLOUD_NAME
-        +
-        "/image/upload/fl_attachment/"
-        +
-        asset.public_id
-        +
-        "."
-        +
-        asset.format;
+        + CLOUD_NAME
+        + "/image/upload/fl_attachment/"
+        + asset.public_id
+        + "."
+        + asset.format;
 
+    lightboxImage.src = imageUrl;
 
-    lightboxImage.src =
-        imageUrl;
+    downloadButton.href = downloadUrl;
 
-
-    downloadButton.href =
-        downloadUrl;
-
-
-    lightbox.classList.add(
-        "active"
-    );
-
+    lightbox.classList.add("active");
 }
 
 
