@@ -10,7 +10,6 @@
 
 <title>Marta & Pietro | 25.06.2027</title>
 
-
 <style>
 
 /* =========================================
@@ -19,14 +18,10 @@
 
 html,
 body {
-
     margin: 0;
     padding: 0;
-
     width: 100%;
-
     background: #f8f6f0;
-
 }
 
 
@@ -35,60 +30,41 @@ body {
    ========================================= */
 
 .page {
-
     position: relative;
-
     width: 100%;
-
     margin: 0;
     padding: 0;
-
     line-height: 0;
-
 }
 
-
 .page img {
-
     display: block;
-
     width: 100%;
-
     height: auto;
-
 }
 
 
 /* =========================================
    RIQUADRO CARICA LE TUE FOTO
-
-   TUTTO IL RIQUADRO È CLICCABILE
    ========================================= */
 
 #uploadButton {
-
     position: absolute;
 
     left: 10.5%;
-
     top: 52.5%;
 
     width: 79%;
-
     height: 31%;
 
     border: none;
-
     background: transparent;
 
     cursor: pointer;
-
     padding: 0;
-
     margin: 0;
 
     z-index: 10;
-
 }
 
 
@@ -97,7 +73,6 @@ body {
    ========================================= */
 
 .gallery-section {
-
     width: 100%;
 
     padding: 55px 18px 70px;
@@ -107,12 +82,10 @@ body {
     text-align: center;
 
     box-sizing: border-box;
-
 }
 
 
 .gallery-title {
-
     margin: 0 0 12px;
 
     color: #30382f;
@@ -129,26 +102,21 @@ body {
     letter-spacing: 2px;
 
     line-height: 1.3;
-
 }
 
 
 .gallery-subtitle {
-
     margin: 0 auto 35px;
 
     max-width: 650px;
 
     color: #454a43;
 
-    font-family:
-        Arial,
-        sans-serif;
+    font-family: Arial, sans-serif;
 
     font-size: 16px;
 
     line-height: 1.7;
-
 }
 
 
@@ -157,7 +125,6 @@ body {
    ========================================= */
 
 .gallery {
-
     width: 100%;
 
     max-width: 1100px;
@@ -170,12 +137,10 @@ body {
         repeat(3, 1fr);
 
     gap: 12px;
-
 }
 
 
 .gallery-item {
-
     position: relative;
 
     overflow: hidden;
@@ -187,14 +152,11 @@ body {
     aspect-ratio: 1 / 1;
 
     cursor: pointer;
-
 }
 
 
 .gallery-item img {
-
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
@@ -203,14 +165,11 @@ body {
 
     transition:
         transform 0.3s ease;
-
 }
 
 
 .gallery-item:hover img {
-
     transform: scale(1.04);
-
 }
 
 
@@ -219,7 +178,6 @@ body {
    ========================================= */
 
 .gallery-message {
-
     width: 100%;
 
     grid-column: 1 / -1;
@@ -233,16 +191,14 @@ body {
     font-size: 15px;
 
     line-height: 1.6;
-
 }
 
 
 /* =========================================
-   FOTO A TUTTO SCHERMO
+   FOTO GRANDE
    ========================================= */
 
 .lightbox {
-
     display: none;
 
     position: fixed;
@@ -250,11 +206,9 @@ body {
     z-index: 9999;
 
     left: 0;
-
     top: 0;
 
     width: 100%;
-
     height: 100%;
 
     background:
@@ -264,37 +218,37 @@ body {
 
     align-items: center;
 
+    flex-direction: column;
+
     padding: 20px;
 
     box-sizing: border-box;
-
 }
 
 
 .lightbox.active {
-
     display: flex;
-
 }
 
 
 .lightbox img {
-
     max-width: 95%;
-
-    max-height: 90%;
+    max-height: 78%;
 
     object-fit: contain;
 
+    border-radius: 4px;
 }
 
 
-.close-lightbox {
+/* =========================================
+   CHIUDI
+   ========================================= */
 
+.close-lightbox {
     position: absolute;
 
     top: 15px;
-
     right: 22px;
 
     color: white;
@@ -307,6 +261,55 @@ body {
 
     line-height: 1;
 
+    z-index: 20;
+}
+
+
+/* =========================================
+   PULSANTE SCARICA
+   ========================================= */
+
+.download-button {
+
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 13px 25px;
+
+    background: white;
+
+    color: #30382f;
+
+    text-decoration: none;
+
+    border-radius: 30px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,0.25);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.download-button:hover {
+
+    transform: scale(1.04);
+
+    background: #f1f0eb;
 }
 
 
@@ -329,7 +332,8 @@ body {
 
     color: #52604c;
 
-    padding: 11px 20px;
+    padding:
+        11px 20px;
 
     border-radius: 25px;
 
@@ -344,12 +348,11 @@ body {
     display: none;
 
     z-index: 99999;
-
 }
 
 
 /* =========================================
-   SMARTPHONE
+   TELEFONO
    ========================================= */
 
 @media (max-width: 600px) {
@@ -358,7 +361,6 @@ body {
 
         padding:
             45px 10px 60px;
-
     }
 
 
@@ -367,14 +369,12 @@ body {
         font-size: 24px;
 
         letter-spacing: 1.5px;
-
     }
 
 
     .gallery-subtitle {
 
         font-size: 15px;
-
     }
 
 
@@ -384,7 +384,23 @@ body {
             repeat(2, 1fr);
 
         gap: 8px;
+    }
 
+
+    .lightbox img {
+
+        max-width: 96%;
+
+        max-height: 72%;
+    }
+
+
+    .download-button {
+
+        padding:
+            12px 22px;
+
+        font-size: 14px;
     }
 
 }
@@ -410,8 +426,8 @@ body {
 
 
     <!--
-       TUTTO IL RIQUADRO DELLA TUA IMMAGINE
-       È CLICCABILE
+       TUTTO IL RIQUADRO
+       DELLA TUA IMMAGINE È CLICCABILE
     -->
 
     <button
@@ -431,7 +447,9 @@ body {
 <section class="gallery-section">
 
     <h2 class="gallery-title">
+
         LE FOTO DEL NOSTRO GIORNO ❤️
+
     </h2>
 
 
@@ -452,8 +470,7 @@ body {
         class="gallery">
 
         <div
-            class="gallery-message"
-            id="galleryMessage">
+            class="gallery-message">
 
             Caricamento delle foto...
 
@@ -473,6 +490,9 @@ body {
     id="lightbox"
     class="lightbox">
 
+
+    <!-- X CHIUSURA -->
+
     <span
         id="closeLightbox"
         class="close-lightbox">
@@ -482,10 +502,25 @@ body {
     </span>
 
 
+    <!-- FOTO -->
+
     <img
         id="lightboxImage"
         src=""
         alt="Foto del matrimonio">
+
+
+    <!-- DOWNLOAD -->
+
+    <a
+        id="downloadButton"
+        class="download-button"
+        href="#"
+        target="_blank">
+
+        ⬇️ SCARICA FOTO
+
+    </a>
 
 </div>
 
@@ -500,7 +535,7 @@ body {
 
 
 <!-- ======================================
-     CLOUDINARY
+     CLOUDINARY UPLOAD WIDGET
      ====================================== -->
 
 <script
@@ -513,7 +548,7 @@ body {
 <script>
 
 /* =========================================
-   DATI CLOUDINARY
+   CLOUDINARY
    ========================================= */
 
 const CLOUD_NAME =
@@ -529,7 +564,7 @@ const GALLERY_TAG =
 
 
 /* =========================================
-   ELEMENTI
+   ELEMENTI PAGINA
    ========================================= */
 
 const uploadButton =
@@ -549,6 +584,23 @@ const gallery =
         "gallery"
     );
 
+
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
+
+
+const lightboxImage =
+    document.getElementById(
+        "lightboxImage"
+    );
+
+
+const downloadButton =
+    document.getElementById(
+        "downloadButton"
+    );
 
 
 /* =========================================
@@ -573,10 +625,6 @@ cloudinary.createUploadWidget(
         "Matrimonio_Marta_Pietro_25-06-2027",
 
 
-    /*
-       TAG DELLE FOTO
-    */
-
     tags:
         [
             GALLERY_TAG
@@ -598,10 +646,6 @@ cloudinary.createUploadWidget(
         ],
 
 
-    /*
-       FORMATI ACCETTATI
-    */
-
     clientAllowedFormats:
         [
             "jpg",
@@ -614,10 +658,6 @@ cloudinary.createUploadWidget(
         ],
 
 
-    /*
-       MASSIMO 50 MB PER FILE
-    */
-
     maxFileSize:
         50000000,
 
@@ -629,10 +669,6 @@ cloudinary.createUploadWidget(
     language:
         "it",
 
-
-    /*
-       TRADUZIONI
-    */
 
     text:
     {
@@ -768,13 +804,15 @@ function(error, result)
 
 
         /*
-           Aspetta qualche secondo
-           e aggiorna la galleria.
+           Aggiorna la galleria
         */
 
         setTimeout(
+
             caricaGalleria,
+
             3000
+
         );
 
     }
@@ -784,7 +822,7 @@ function(error, result)
 
 
 /* =========================================
-   APRI UPLOAD
+   APERTURA CLOUDINARY
    ========================================= */
 
 uploadButton.addEventListener(
@@ -838,7 +876,7 @@ function mostraMessaggio(
 
 
 /* =========================================
-   CARICA LE FOTO DALLA RESOURCE LIST
+   CARICA GALLERIA
    ========================================= */
 
 function caricaGalleria()
@@ -915,13 +953,28 @@ function caricaGalleria()
 
 
             /*
-               CREA LE FOTO
+               CREA LA GALLERIA
             */
 
             data.resources.forEach(
 
                 function(asset)
                 {
+
+                    /*
+                       Mostra solo immagini
+                    */
+
+                    if
+                    (
+                        !asset.format
+                    )
+                    {
+
+                        return;
+
+                    }
+
 
                     const item =
                         document.createElement(
@@ -948,10 +1001,10 @@ function caricaGalleria()
 
 
                     /*
-                       URL OTTIMIZZATO CLOUDINARY
+                       URL IMMAGINE
                     */
 
-                    image.src =
+                    const imageUrl =
 
                         "https://res.cloudinary.com/"
                         +
@@ -968,14 +1021,17 @@ function caricaGalleria()
                         asset.format;
 
 
+                    image.src =
+                        imageUrl;
+
+
                     item.appendChild(
                         image
                     );
 
 
                     /*
-                       CLICCANDO SULLA FOTO
-                       SI APRE GRANDE
+                       CLIC SULLA FOTO
                     */
 
                     item.addEventListener(
@@ -986,7 +1042,7 @@ function caricaGalleria()
                         {
 
                             apriFoto(
-                                image.src
+                                asset
                             );
 
                         }
@@ -1023,7 +1079,7 @@ function caricaGalleria()
                 +
                 'La galleria non è momentaneamente '
                 +
-                'disponibile. Riprova più tardi. ❤️'
+                'disponibile. ❤️'
                 +
                 '</div>';
 
@@ -1036,26 +1092,60 @@ function caricaGalleria()
 
 
 /* =========================================
-   APRI FOTO GRANDE
+   APRI FOTO
    ========================================= */
 
-function apriFoto(url)
+function apriFoto(asset)
 {
 
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
+    /*
+       URL normale della foto
+    */
+
+    const imageUrl =
+
+        "https://res.cloudinary.com/"
+        +
+        CLOUD_NAME
+        +
+        "/image/upload/"
+        +
+        "f_auto,q_auto/"
+        +
+        asset.public_id
+        +
+        "."
+        +
+        asset.format;
 
 
-    const lightboxImage =
-        document.getElementById(
-            "lightboxImage"
-        );
+    /*
+       URL per il download
+
+       fl_attachment forza il download
+    */
+
+    const downloadUrl =
+
+        "https://res.cloudinary.com/"
+        +
+        CLOUD_NAME
+        +
+        "/image/upload/fl_attachment/"
+        +
+        asset.public_id
+        +
+        "."
+        +
+        asset.format;
 
 
     lightboxImage.src =
-        url;
+        imageUrl;
+
+
+    downloadButton.href =
+        downloadUrl;
 
 
     lightbox.classList.add(
@@ -1083,13 +1173,15 @@ document
         function()
         {
 
-            document
-                .getElementById(
-                    "lightbox"
-                )
-                .classList.remove(
-                    "active"
-                );
+            lightbox.classList.remove(
+                "active"
+            );
+
+            lightboxImage.src =
+                "";
+
+            downloadButton.href =
+                "#";
 
         }
 
@@ -1098,50 +1190,80 @@ document
 
 
 /* =========================================
-   CHIUDI CLICCANDO FUORI DALLA FOTO
+   CHIUDI CLICCANDO FUORI
    ========================================= */
 
-document
+lightbox.addEventListener(
 
-    .getElementById(
-        "lightbox"
-    )
+    "click",
 
-    .addEventListener(
+    function(event)
+    {
 
-        "click",
-
-        function(event)
+        if
+        (
+            event.target ===
+            lightbox
+        )
         {
 
-            if
-            (
-                event.target === this
-            )
-            {
+            lightbox.classList.remove(
+                "active"
+            );
 
-                this.classList.remove(
-                    "active"
-                );
+            lightboxImage.src =
+                "";
 
-            }
+            downloadButton.href =
+                "#";
 
         }
 
-    );
+    }
+
+);
 
 
 
 /* =========================================
-   CARICA LA GALLERIA ALL'APERTURA
+   ESC PER CHIUDERE
+   ========================================= */
+
+document.addEventListener(
+
+    "keydown",
+
+    function(event)
+    {
+
+        if
+        (
+            event.key ===
+            "Escape"
+        )
+        {
+
+            lightbox.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+
+);
+
+
+
+/* =========================================
+   CARICA GALLERIA
    ========================================= */
 
 caricaGalleria();
 
 
 /*
-   Aggiornamento automatico
-   ogni 60 secondi.
+   Aggiorna ogni 60 secondi
 */
 
 setInterval(
